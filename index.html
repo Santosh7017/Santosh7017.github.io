@@ -380,7 +380,7 @@
             box-sizing: border-box;
             display: flex;
             flex-wrap: wrap;
-            padding: 0 50px;
+            padding: 0 22px;
             margin-bottom: 20px;
             /* justify-content: space-around; */
             justify-content: center;
@@ -593,22 +593,22 @@
 
         .eighty-five-percent {
             height: inherit;
-            width: 85% !important;
+            width: 85% ;
         }
 
         .eighty-percent {
             height: inherit;
-            width: 80% !important;
+            width: 80% ;
         }
 
         .seventy-five-percent {
             height: inherit;
-            width: 75% !important;
+            width: 75% ;
         }
 
         .ninghty-percent {
             height: inherit;
-            width: 90% !important;
+            width: 90% ;
         }
 
         .fifty-percent {
@@ -780,7 +780,7 @@
                     </li>
                     <li>
                         <a href="https://github.com/Santosh7017">
-                            <!-- <i class="fa-brands fa-github"></i> -->
+                            <i class="fa-brands fa-github"></i>
                         </a>
                     </li>
                     <li>
@@ -864,35 +864,35 @@ In all of my endeavors, I strive to maintain a positive attitude and a solutions
                     </div>
                 </div>
                 <div class="skill-progress">
-                    <div class="eighty-percent mb-teal" data-bar-width="55">
+                    <div class="eighty-percent mb-teal" data-bar-width="85">
                         <div class="skill-name">
                             <span> Javascript </span>
                         </div>
                     </div>
                 </div>
                 <div class="skill-progress">
-                    <div class="eighty-percent mb-blue" data-bar-width="55">
+                    <div class="eighty-percent mb-blue" data-bar-width="85">
                         <div class="skill-name">
                             <span> SQL</span>
                         </div>
                     </div>
                 </div>
                 <div class="skill-progress">
-                    <div class="eighty-five-percent mb-teal" data-bar-width="55">
+                    <div class="eighty-five-percent mb-teal" data-bar-width="85">
                         <div class="skill-name">
                             <span> Node JS</span>
                         </div>
                     </div>
                 </div>
                 <div class="skill-progress">
-                    <div class="eighty-percent mb-blue" data-bar-width="55">
+                    <div class="eighty-percent mb-blue" data-bar-width="85">
                         <div class="skill-name">
                             <span> Mongo DB</span>
                         </div>
                     </div>
                 </div>
                 <div class="skill-progress">
-                    <div class="ninghty-percent mb-blue" data-bar-width="55">
+                    <div class="ninghty-percent mb-blue" data-bar-width="90">
                         <div class="skill-name">
                             <span> Leadership</span>
                         </div>
@@ -1228,6 +1228,7 @@ In all of my endeavors, I strive to maintain a positive attitude and a solutions
         initialiseBars();
 
         function fillBars() {
+            console.log("Inside data bars")
             for (let bar of progressBars) {
                 let targetWidth = bar.getAttribute('data-bar-width');
                 let currentWidth = 0;
