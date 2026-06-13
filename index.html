@@ -1316,10 +1316,64 @@
             .btn { width: 100%; max-width: 280px; justify-content: center; }
             .timeline-header { flex-direction: column; }
         }
+
+        .custom-cursor-dot, .custom-cursor-glow {
+            display: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+            a, button, .btn, .nav-links a, .hero-social a, .contact-social a, .project-card, .skill-card, .timeline-card, .education-card, .certificate-card, .nav-toggle {
+                cursor: none;
+            }
+            .custom-cursor-dot {
+                display: block;
+                width: 8px;
+                height: 8px;
+                background-color: var(--accent-secondary);
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+                transition: opacity 0.2s ease, width var(--transition-fast), height var(--transition-fast), background-color var(--transition-fast);
+            }
+            .custom-cursor-glow {
+                display: block;
+                width: 36px;
+                height: 36px;
+                border: 1.5px solid var(--accent-primary);
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9998;
+                transition: opacity 0.2s ease, transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width var(--transition-fast), height var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+                background-color: rgba(99, 102, 241, 0.02);
+                box-shadow: 0 0 10px rgba(99, 102, 241, 0.05);
+            }
+            .custom-cursor-glow.hovered {
+                width: 54px;
+                height: 54px;
+                background-color: rgba(34, 211, 238, 0.08);
+                border-color: var(--accent-secondary);
+                box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+            }
+            .custom-cursor-dot.hovered {
+                background-color: var(--accent-primary);
+                width: 4px;
+                height: 4px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-glow"></div>
+
     <div class="bg-canvas">
         <div class="bg-grid"></div>
         <div class="bg-orb-wrapper orb-1">
@@ -2118,6 +2172,36 @@
                 orb.style.transform = 'translate3d(' + xOffset + 'px, ' + yOffset + 'px, 0)';
             });
         });
+
+        var cursorDot = document.querySelector('.custom-cursor-dot');
+        var cursorGlow = document.querySelector('.custom-cursor-glow');
+        if (cursorDot && cursorGlow) {
+            document.addEventListener('mousemove', function(e) {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+            var hoverables = document.querySelectorAll('a, button, .btn, .project-card, .skill-card, .timeline-card, .education-card, .certificate-card, .nav-toggle');
+            hoverables.forEach(function(el) {
+                el.addEventListener('mouseenter', function() {
+                    cursorDot.classList.add('hovered');
+                    cursorGlow.classList.add('hovered');
+                });
+                el.addEventListener('mouseleave', function() {
+                    cursorDot.classList.remove('hovered');
+                    cursorGlow.classList.remove('hovered');
+                });
+            });
+            document.addEventListener('mouseleave', function() {
+                cursorDot.style.opacity = '0';
+                cursorGlow.style.opacity = '0';
+            });
+            document.addEventListener('mouseenter', function() {
+                cursorDot.style.opacity = '1';
+                cursorGlow.style.opacity = '1';
+            });
+        }
     </script>
 </body>
 </html>
